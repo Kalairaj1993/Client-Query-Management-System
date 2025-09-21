@@ -157,6 +157,6 @@ streamlit run app.py
 ## 👨‍🏫 Author
 
 Developed as part of a **Data Science / Python capstone project**.
-📧 For queries: *(mailto:rajfreelancer1993@gmail.com)*
+📧 For queries: *(Mail to : rajfreelancer1993@gmail.com)*
 
 ---
