@@ -1,20 +1,23 @@
-Great — thanks for sharing both the code and the reference PDF. Based on your **Streamlit + PostgreSQL Client Query Management System** code and the guidelines in your document, I’ve prepared a **well-documented README** for your project.
-
 ---
 
 # 📌 Client Query Management System
 
-## 🚀 Project Overview
+## 🚀 About the Project
 
-The **Client Query Management System** is a full-stack Streamlit application that enables clients to **submit queries** and support teams to **manage, track, and resolve them efficiently**.
-It uses **PostgreSQL** as the backend database, **Pandas** for data handling, **Plotly** for visualization, and **Streamlit** for the frontend.
+The **Client Query Management System** is a **Streamlit web application** that enables organizations to **collect, track, and resolve client queries** efficiently.
 
-This system helps organizations:
+It features:
 
-* Organize incoming client queries.
-* Monitor progress with real-time dashboards.
-* Improve resolution times and customer satisfaction.
-* Track support team performance with metrics and trends.
+* A **Client Interface** → for submitting and tracking queries.
+* A **Support Dashboard** → for managing and resolving queries.
+
+The system is powered by:
+
+* **PostgreSQL** (database)
+* **Streamlit** (frontend UI)
+* **Pandas** (data manipulation)
+* **Plotly** (visualizations)
+* **SQLAlchemy & psycopg2** (database connection)
 
 ---
 
@@ -22,41 +25,22 @@ This system helps organizations:
 
 ### 👨‍💻 Client Side
 
-* **Secure Login & Registration** (role-based authentication).
-* **Submit New Queries** with details:
+* Register/Login securely (SHA-256 hashed passwords).
+* Submit new queries with **email, phone, heading, description, and priority**.
+* Track all submitted queries with **status updates** (Open, In Progress, Resolved).
+* View query distribution with **interactive charts**.
 
-  * Email ID, Mobile Number, Heading, Description, Priority.
-* **Track Submitted Queries**:
+### 🎧 Support Team Side
 
-  * View all past queries.
-  * Visualize status distribution (Open, In Progress, Resolved).
-  * Monitor resolution progress over time.
+* Role-based dashboard with metrics:
 
-### 🎧 Support Side
-
-* **Dashboard Overview**:
-
-  * Metrics: Total queries, In Progress, Resolved.
-  * Visualizations: Status breakdown (pie chart), Query trends (line chart).
-* **Manage Queries**:
-
-  * Filter by status.
-  * Update query status (Open → In Progress → Resolved).
-  * Assign queries to agents.
-* **Performance Tracking**:
-
-  * Query load per day.
-  * Average resolution time.
-
----
-
-## 🗂️ Tech Stack
-
-* **Frontend**: [Streamlit](https://streamlit.io/)
-* **Backend**: [PostgreSQL](https://www.postgresql.org/) with SQLAlchemy ORM
-* **Visualization**: [Plotly Express](https://plotly.com/python/plotly-express/)
-* **Libraries**: `pandas`, `hashlib`, `sqlalchemy`, `psycopg2`, `datetime`
-* **Authentication**: SHA-256 password hashing
+  * 📌 Total Queries
+  * 🟠 In Progress
+  * ✅ Resolved
+* Filter and manage queries by status.
+* Assign queries to support agents.
+* Update query progress and resolution.
+* Visualize query trends over time.
 
 ---
 
@@ -73,9 +57,11 @@ cd client-query-management
 
 ```bash
 python -m venv venv
+# Activate virtual environment
 source venv/bin/activate   # (Linux/Mac)
 venv\Scripts\activate      # (Windows)
 
+# Install requirements
 pip install -r requirements.txt
 ```
 
@@ -89,21 +75,21 @@ psycopg2
 plotly
 ```
 
-### 3️⃣ Configure PostgreSQL
+### 3️⃣ Setup PostgreSQL Database
 
-* Create a database named `Client_query`:
+* Create a new database:
 
 ```sql
 CREATE DATABASE Client_query;
 ```
 
-* Update your database credentials in the code:
+* Update credentials in `app.py`:
 
 ```python
 DB_URL = "postgresql+psycopg2://<username>:<password>@localhost:5432/Client_query"
 ```
 
-### 4️⃣ Run the App
+### 4️⃣ Run the Application
 
 ```bash
 streamlit run app.py
@@ -115,71 +101,56 @@ streamlit run app.py
 
 The system initializes with two default accounts:
 
-* **Support Admin**
-
-  * Username: `support_admin`
-  * Password: `support123`
-  * Role: `support`
-* **Client User**
-
-  * Username: `client_user`
-  * Password: `client123`
-  * Role: `client`
+| Username        | Password     | Role    |
+| --------------- | ------------ | ------- |
+| `support_admin` | `support123` | Support |
+| `client_user`   | `client123`  | Client  |
 
 ---
 
 ## 📊 Dataset
 
-* The app loads sample queries from a CSV (Google Drive link configured in the code).
+* Sample queries are loaded from a **CSV file** (Google Drive link inside code).
 * Columns include:
 
-  * `client_name`, `email_id`, `mobile_number`, `query_heading`,
-    `query_text`, `status`, `priority`, `submitted_on`, `resolved_on`, `assigned_to`.
+  * `client_name`, `email_id`, `mobile_number`
+  * `query_heading`, `query_text`
+  * `status`, `priority`
+  * `submitted_on`, `resolved_on`, `assigned_to`
 
 ---
 
-## 📷 Screenshots (Optional)
+## 📈 How It Works
 
-* **Client Dashboard** – Submit and track queries.
-* **Support Dashboard** – Monitor and manage queries.
-
-(Add screenshots here once the app is running.)
-
----
-
-## 📈 Business Use Cases
-
-1. **Query Submission Interface** – Clients raise tickets in real-time.
-2. **Query Tracking Dashboard** – Support teams monitor workload.
-3. **Service Efficiency** – Measure query resolution speed.
-4. **Customer Satisfaction** – Faster query resolution improves trust.
-5. **Support Load Monitoring** – Identify bottlenecks and backlogs.
+1. **Clients** log in, submit queries, and track them.
+2. **Support Team** logs in, views all queries, and updates progress.
+3. **Visualizations** show query status breakdown and trends.
+4. Data is stored in **PostgreSQL** and updated in real-time.
 
 ---
 
-## ✅ Evaluation Criteria
+## 📌 Example Use Cases
 
-* Maintainable & modular Python code.
-* Secure authentication with password hashing.
-* Clear Streamlit UI with forms and tables.
-* Real-time database operations with PostgreSQL.
-* Well-documented README and project repository.
+* 🏢 Companies → Handle customer support tickets.
+* 🎓 Universities → Manage student issues and feedback.
+* 🛠️ Service Providers → Track client requests.
+* 👨‍💻 Teams → Organize and assign project queries.
 
 ---
 
 ## 📌 Future Enhancements
 
-* 🔐 JWT or OAuth-based authentication.
-* 📷 File/image uploads with BLOB storage.
-* 📧 Email notifications on query updates.
-* 📊 SLA tracking for overdue queries.
-* 🌐 Deployment on cloud (Heroku/AWS/Streamlit Cloud).
+* 🔐 JWT / OAuth authentication.
+* 📷 File/Image upload support.
+* 📧 Email alerts on query updates.
+* 📊 SLA (Service Level Agreement) monitoring.
+* 🌐 Cloud deployment (Heroku, AWS, Streamlit Cloud).
 
 ---
 
 ## 👨‍🏫 Author
 
 Developed as part of a **Data Engineering / Python capstone project**.
-📧 For queries: *[your-email@example.com](mailto:your-email@example.com)*
+📧 For queries: *(mailto:rajfreelancer1993@gmail.com)*
 
 ---
