@@ -1,3 +1,13 @@
+Got it ✅ You want your **README.md** to clearly state that you:
+
+* Used **PostgreSQL** to create the database.
+* Connected via **VS Code** using `DB_URL` with PostgreSQL credentials.
+* First tested the connection in a **Jupyter Notebook (`.ipynb`)**.
+* Then converted it into a **Python script (`.py`)**.
+* Finally built the **Streamlit dashboard**.
+
+Here’s the updated **detailed README** with that included 👇
+
 ---
 
 # 📌 Client Query Management System
@@ -21,26 +31,56 @@ The system is powered by:
 
 ---
 
+## 🛠️ Development Workflow
+
+1. **Database Setup (PostgreSQL)**
+
+   * Created a PostgreSQL database named `Client_query`.
+   * Connected using **VS Code** with a `DB_URL` string:
+
+     ```python
+     DB_URL = "postgresql+psycopg2://<username>:<password>@localhost:5432/Client_query"
+     ```
+   * Replaced `<username>` and `<password>` with PostgreSQL credentials.
+
+2. **Initial Testing**
+
+   * Used a **Jupyter Notebook (`.ipynb`)** to test PostgreSQL connection.
+   * Verified query execution and database CRUD operations.
+
+3. **Python Script (`.py`)**
+
+   * Migrated connection code into a Python script.
+   * Created **tables** (`users`, `queries`) directly in the database.
+   * Added helper functions for insert, update, and fetch operations.
+
+4. **Streamlit Dashboard**
+
+   * Built a **UI for Clients** to submit and track queries.
+   * Built a **Support Dashboard** to manage queries, visualize metrics, and update statuses.
+
+---
+
 ## 🛠️ Features
 
 ### 👨‍💻 Client Side
 
-* Register/Login securely (SHA-256 hashed passwords).
-* Submit new queries with **email, phone, heading, description, and priority**.
-* Track all submitted queries with **status updates** (Open, In Progress, Resolved).
-* View query distribution with **interactive charts**.
+* Secure **Login & Registration**.
+* Submit queries with **email, phone, heading, description, and priority**.
+* Track submitted queries with **status updates**.
+* Query distribution displayed via **charts and styled tables**.
 
 ### 🎧 Support Team Side
 
-* Role-based dashboard with metrics:
+* Dashboard with metrics:
 
   * 📌 Total Queries
   * 🟠 In Progress
   * ✅ Resolved
-* Filter and manage queries by status.
+* Filter queries by status.
 * Assign queries to support agents.
-* Update query progress and resolution.
-* Visualize query trends over time.
+* Update query status and resolution date.
+* Query insights with pie and line charts.
 
 ---
 
@@ -53,7 +93,7 @@ git clone https://github.com/your-username/client-query-management.git
 cd client-query-management
 ```
 
-### 2️⃣ Create a Virtual Environment & Install Dependencies
+### 2️⃣ Create Virtual Environment & Install Dependencies
 
 ```bash
 python -m venv venv
@@ -75,21 +115,21 @@ psycopg2
 plotly
 ```
 
-### 3️⃣ Setup PostgreSQL Database
+### 3️⃣ Setup PostgreSQL
 
-* Create a new database:
+* Create a database:
 
 ```sql
 CREATE DATABASE Client_query;
 ```
 
-* Update credentials in `app.py`:
+* Update DB credentials in `app.py`:
 
 ```python
 DB_URL = "postgresql+psycopg2://<username>:<password>@localhost:5432/Client_query"
 ```
 
-### 4️⃣ Run the Application
+### 4️⃣ Run the App
 
 ```bash
 streamlit run app.py
@@ -98,8 +138,6 @@ streamlit run app.py
 ---
 
 ## 🔑 Default Users
-
-The system initializes with two default accounts:
 
 | Username        | Password     | Role    |
 | --------------- | ------------ | ------- |
@@ -110,41 +148,40 @@ The system initializes with two default accounts:
 
 ## 📊 Dataset
 
-* Sample queries are loaded from a **CSV file** (Google Drive link inside code).
-* Columns include:
+* Loads sample queries from a CSV (Google Drive link inside code).
+* Includes columns:
 
-  * `client_name`, `email_id`, `mobile_number`
-  * `query_heading`, `query_text`
-  * `status`, `priority`
-  * `submitted_on`, `resolved_on`, `assigned_to`
+  * `client_name`, `email_id`, `mobile_number`,
+  * `query_heading`, `query_text`, `status`, `priority`,
+  * `submitted_on`, `resolved_on`, `assigned_to`.
 
 ---
 
 ## 📈 How It Works
 
-1. **Clients** log in, submit queries, and track them.
-2. **Support Team** logs in, views all queries, and updates progress.
-3. **Visualizations** show query status breakdown and trends.
-4. Data is stored in **PostgreSQL** and updated in real-time.
+1. **Clients** log in, submit queries, and track progress.
+2. **Support team** views all queries and updates status.
+3. **Charts** show workload distribution and trends.
+4. **PostgreSQL** stores and updates data in real-time.
 
 ---
 
-## 📌 Example Use Cases
+## 📌 Use Cases
 
 * 🏢 Companies → Handle customer support tickets.
-* 🎓 Universities → Manage student issues and feedback.
-* 🛠️ Service Providers → Track client requests.
-* 👨‍💻 Teams → Organize and assign project queries.
+* 🎓 Universities → Manage student requests.
+* 🛠️ Service Providers → Track client complaints.
+* 👨‍💻 Teams → Organize project-related queries.
 
 ---
 
 ## 📌 Future Enhancements
 
-* 🔐 JWT / OAuth authentication.
-* 📷 File/Image upload support.
-* 📧 Email alerts on query updates.
-* 📊 SLA (Service Level Agreement) monitoring.
-* 🌐 Cloud deployment (Heroku, AWS, Streamlit Cloud).
+* JWT / OAuth-based authentication.
+* File/image upload with BLOB storage.
+* Email notifications for query updates.
+* SLA tracking and overdue alerts.
+* Cloud deployment (Heroku, AWS, Streamlit Cloud).
 
 ---
 
