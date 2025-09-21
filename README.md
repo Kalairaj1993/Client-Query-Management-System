@@ -1,13 +1,3 @@
-Got it ✅ You want your **README.md** to clearly state that you:
-
-* Used **PostgreSQL** to create the database.
-* Connected via **VS Code** using `DB_URL` with PostgreSQL credentials.
-* First tested the connection in a **Jupyter Notebook (`.ipynb`)**.
-* Then converted it into a **Python script (`.py`)**.
-* Finally built the **Streamlit dashboard**.
-
-Here’s the updated **detailed README** with that included 👇
-
 ---
 
 # 📌 Client Query Management System
@@ -15,6 +5,12 @@ Here’s the updated **detailed README** with that included 👇
 ## 🚀 About the Project
 
 The **Client Query Management System** is a **Streamlit web application** that enables organizations to **collect, track, and resolve client queries** efficiently.
+
+* Used **PostgreSQL** to create the database.
+* Connected via **VS Code** using `DB_URL` with PostgreSQL credentials.
+* First tested the connection in a **Jupyter Notebook (`.ipynb`)**.
+* Then converted it into a **Python script (`.py`)**.
+* Finally built the **Streamlit dashboard**.
 
 It features:
 
