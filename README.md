@@ -42,8 +42,8 @@ The **Client Query Management System** is a **Streamlit web application** that e
 
 * Dashboard with metrics:
 
-  * 📌 Total Queries
-  * 🟠 In Progress
+  * 🧾 Total Queries
+  * ⏳ In Progress
   * ✅ Resolved
 * Filter queries by status.
 * Assign queries to support agents.
