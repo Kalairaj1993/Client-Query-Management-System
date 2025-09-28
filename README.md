@@ -154,6 +154,65 @@ streamlit run app.py
 
 ---
 
+# **📌 Flow of Client Query Management System**
+
+```
+START
+   │
+   ▼
+App launches → main()
+   │
+   ▼
+setup_database()
+   │  (creates tables + inserts default users + loads CSV)
+   │
+   ▼
+Check session state:
+   ├── Logged in? 
+   │       │
+   │       ├── NO → Show login_and_register_ui()
+   │       │           ├── Option: Login
+   │       │           │       ├── Authenticate user (DB check)
+   │       │           │       ├── If success → Update session_state (logged_in=True)
+   │       │           │       └── If fail → Show error
+   │       │           │
+   │       │           └── Option: Register
+   │       │                   ├── Check if username exists
+   │       │                   ├── If not → Insert new user
+   │       │                   └── If exists → Show warning
+   │       │
+   │       └── After login → st.rerun() → Reload main()
+   │
+   └── YES → Show role-based view
+            │
+            ├── If role == "client"
+            │        │
+            │        ├── Show client_view()
+            │        │      ├── New Query Form (insert into DB)
+            │        │      ├── Fetch queries for this client
+            │        │      ├── Display pie chart (status breakdown)
+            │        │      └── Display styled DataFrame (status/priority colors)
+            │
+            └── If role == "support"
+                     │
+                     ├── Show support_dashboard()
+                     │      ├── Show metrics summary
+                     │      ├── Pie chart (all queries by status)
+                     │      ├── Line chart (queries over time)
+                     │      ├── Filter queries by status
+                     │      ├── Display styled DataFrame (status/priority with emojis)
+                     │      └── Update query form (status/assigned_to/resolved_on)
+                     │
+                     └── Updated queries → Commit to DB
+   │
+   ▼
+User can always → Click Logout → Reset session_state → Back to login screen
+   │
+   ▼
+END
+```
+---
+
 ## 👨‍🏫 Author
 
 Developed as part of a **Data Science / Python capstone project**.
